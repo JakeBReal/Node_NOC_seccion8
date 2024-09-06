@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 
 import { envs } from './config/plugins/envs.plugi';
@@ -27,22 +26,3 @@ function main() {
 
 }
 
-=======
-import { yarg } from "./config/plugins/args.plugin";
-import { ServerApp } from "./presentation/server-app";
-
-
-(async () => {
-  await main();
-})();
-
-
-async function main() {
-
-  const { b: base, l: limit, s: showTable, n: fileName, d: fileDestination } = yarg;
-
-
-  ServerApp.run({ base, limit, showTable, fileName, fileDestination });
-
-}
->>>>>>> fbce000670d07a617dbb40c5007bd853f7e29cd6
