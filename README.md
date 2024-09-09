@@ -1,3 +1,13 @@
+
+<!-- todo: Ejemplo de Uso con Better Comments: -->
+typescript
+Copy code
+// * Comentario destacado
+// ! Advertencia
+// ? Pregunta o duda
+// TODO: Algo que hacer
+// Nota normal, que no necesita un prefijo especial
+
 # Proyecto NOC
 
 El objetivo es crear una serie de tareas usando Arquitectura Limpia con TypeScript

@@ -11,7 +11,7 @@ export class CronService  {
 
     const job = new CronJob( cronTime,onTick );
     
-    job.stop();
+    job.start();
     
     return job;
 
