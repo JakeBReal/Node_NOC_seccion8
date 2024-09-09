@@ -1,11 +1,13 @@
 import { CheckService } from "../domain/use-cases/checks/check-service";
-import { cronservices } from "./cron/cron-service";
+import { CronService } from "./cron/cron-service";
 
 // import { ChildProcess } from "child_process";
 import { LogRepositoryImpl } from '../infrastructure/datasources/repositories/log-repository.impl';
 import { FileSystemDataSources } from "../infrastructure/datasources/file-system.datasources";
+import { envs } from "../config/plugins/envs.plugi";
+import {  EmailService } from './email/email.services';
 
-const FilelogRepository =new LogRepositoryImpl(
+const FileSystemlogRepository =new LogRepositoryImpl(
     new FileSystemDataSources(),
     // new postgresLogDataSources();
     // new MongoLogDataSources();
@@ -18,17 +20,38 @@ export class Server {
 
         console.log('Server started...');
 
-        cronservices.createjob( 
-            '*/5 * * * * * ',
-            () => {
+        // MANDAR EMAIL
+        const emailService = new EmailService ();
 
-                const url = 'http://google.com';
-                new CheckService(
-                    FilelogRepository,
-                    () => console.log(`${url} is OK`)
-                    ,
-                    (error) => console.log(`Error checking ${url}: ${error}`)
-                ).execute(url);
+        emailService.sendEmail({ 
+            to: 'jakebencosme@gmail.com',
+            subject: 'Logs de sistema',
+            htmlbody: `
+            
+            <h2>Logs de sistema</h2>
+            <p>Aquí tienes los logs de sistema:</p>
+            <p> Ver logs adjuntos </p>
+            `
+        });
+
+        // console.log( envs.MAILER_EMAIL, envs.MAILER_SECRET_KEY );
+        
+        
+
+        //   CronService.createJob( 
+        //     '*/5 * * * * * ',
+        //     () => {
+
+        //         const url = 'http://google.com';
+        //         new CheckService(
+        //           FileSystemlogRepository,
+        //             () => console.log(`${url} is OK`)
+        //             ,
+        //             (error) => console.log(error)
+        //         ).execute(url);
+                //    );
+
+
                 // new CheckService().execute('http://localhost:3000')
 
             //     const date = new Date();
@@ -36,9 +59,9 @@ export class Server {
             //    console.log('everry 5 seconds', date);
             // OnTick function to be executed every 5 minutes
              }  
-        );
+       
         
         
     }
-}
+
 

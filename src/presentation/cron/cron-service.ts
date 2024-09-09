@@ -1,17 +1,22 @@
-
-
 import { CronJob } from 'cron';
 
 type CronTime = string | Date;
-type OnTICK = () => void;
+type OnTick = () => void;
 
-export class cronservices  {
 
-    static createjob( cronTime: CronTime, OnTick: OnTICK):CronJob{
+export class CronService  {
 
-        const job = new CronJob( cronTime, OnTick );
-        job.start();
-        return job;
-        
-    }
+
+  static createJob( cronTime: CronTime, onTick: OnTick ): CronJob {
+
+    const job = new CronJob( cronTime,onTick );
+    
+    job.stop();
+    
+    return job;
+
+  }
+
+
 }
+

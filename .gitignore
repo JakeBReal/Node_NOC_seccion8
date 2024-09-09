@@ -1,18 +1,8 @@
 
 
+
 node_modules/
-<<<<<<< HEAD
-dist/ 
-
-#
-.DS_Store
-
-
-logs/
-
-
-.env
-=======
 dist/
-outputs/
->>>>>>> fbce000670d07a617dbb40c5007bd853f7e29cd6
+
+# Logs
+.DS_Store
